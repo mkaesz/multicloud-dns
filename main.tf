@@ -198,6 +198,19 @@ resource "constellix_mx_record" "mx2" {
   }
 }
 
+resource "constellix_cname_record" "test" {
+  domain_id     = constellix_domain.msk_pub.id
+  source_type   = "domains"
+  record_option = "roundRobin"
+  ttl           = 300
+  name          = "testt"
+  host          = "spiegel.de."
+  type        = "CNAME"
+  gtd_region  = 1
+  note        = ""
+  noanswer    = false
+}
+
 resource "constellix_cname_record" "mailgun" {
   domain_id     = constellix_domain.msk_pub.id
   source_type   = "domains"
