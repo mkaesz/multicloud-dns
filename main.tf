@@ -75,7 +75,11 @@ resource "constellix_txt_record" "txtrecord1" {
     value        = "IjSqzcZCM2mzpQ6sfSj9J4g7gVG8hYZ_5pW3f9f3dYI"
     disable_flag = false
   }
-}
+  roundrobin {
+    value        = "iJnEBsknNwJSJ9xwsKJ0z1oRPODqMfdhH-kfD3zLGcE"
+    disable_flag = false
+  }
+
 
 resource "constellix_txt_record" "txtrecord2" {
   domain_id   = constellix_domain.msk_pub.id
