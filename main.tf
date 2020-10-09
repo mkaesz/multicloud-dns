@@ -79,7 +79,7 @@ resource "constellix_txt_record" "txtrecord1" {
     value        = "iJnEBsknNwJSJ9xwsKJ0z1oRPODqMfdhH-kfD3zLGcE"
     disable_flag = false
   }
-
+}
 
 resource "constellix_txt_record" "txtrecord2" {
   domain_id   = constellix_domain.msk_pub.id
