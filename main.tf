@@ -83,7 +83,7 @@ resource "google_dns_record_set" "spf" {
   type         = "TXT"
   ttl          = 300
 
-  rrdatas = ["iJnEBsknNwJSJ9xwsKJ0z1oRPODqMfdhH-kfD3zLGcE"]
+  rrdatas = ["pavc6_O5n5fgJk0aqhz74FvIOzwAbyHpEckI6kflpsE"]
 }
 
 resource "constellix_txt_record" "txtrecord2" {
