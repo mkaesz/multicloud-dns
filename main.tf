@@ -75,10 +75,15 @@ resource "constellix_txt_record" "txtrecord1" {
     value        = "IjSqzcZCM2mzpQ6sfSj9J4g7gVG8hYZ_5pW3f9f3dYI"
     disable_flag = false
   }
-  roundrobin {
-    value        = "iJnEBsknNwJSJ9xwsKJ0z1oRPODqMfdhH-kfD3zLGcE"
-    disable_flag = false
-  }
+}
+
+resource "google_dns_record_set" "spf" {
+  name         = "_acme-challenge.${google_dns_managed_zone.msk-pub-zone.dns_name}"
+  managed_zone = google_dns_managed_zone.msk-pub-zone.name
+  type         = "TXT"
+  ttl          = 300
+
+  rrdatas = ["iJnEBsknNwJSJ9xwsKJ0z1oRPODqMfdhH-kfD3zLGcE"]
 }
 
 resource "constellix_txt_record" "txtrecord2" {
