@@ -133,7 +133,7 @@ resource "google_dns_record_set" "spf" {
   name         = "_acme-challenge.${google_dns_managed_zone.msk-pub-zone.dns_name}"
   managed_zone = google_dns_managed_zone.msk-pub-zone.name
   type         = "TXT"
-  ttl          = 301
+  ttl          = 300
 
   rrdatas = ["Zjsyox82oVRUBw6MYMIHQZxcNspHQxjCJ99GBtomXsY"]
 }
