@@ -117,7 +117,7 @@ resource "constellix_txt_record" "txtrecord12" {
   type           = "TXT"
   source_type    = "domains"
   roundrobin {
-    value        = "5x-exm5KfFebO8Bi3ZsZY8ffnjhmMaVvDXb03_tTeEs"
+    value        = "XKHvSctJcgG7Xnsv0nRRxgRw2zXUNFmediaq6mDTv6o"
     disable_flag = false
   }
 }
