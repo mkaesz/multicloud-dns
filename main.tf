@@ -41,6 +41,21 @@ resource "constellix_domain" "servicecontrol_io" {
   }
 }
 
+resource "constellix_txt_record" "txtrecord11" {
+  domain_id      = constellix_domain.servicecontrol_io.id
+  ttl            = 300
+  name           = "_acme-challenge"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "83q9jID9kPsbYToGd4X8DpKkXnwm4xf6rKyp_ILEiNU"
+    disable_flag = false
+  }
+}
+
 resource "constellix_domain" "upcloud_msk_pub" {
   name = "upcloud.msk.pub"
   soa = {
