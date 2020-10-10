@@ -29,6 +29,18 @@ resource "constellix_domain" "msk_pub" {
   }
 }
 
+resource "constellix_domain" "nasonlinux_org" {
+  name = "msk.pub"
+  soa = {
+    primary_nameserver = "ns41.constellix.com."
+    ttl                = 1800
+    refresh            = 48100
+    retry              = 7200
+    expire             = 1209
+    negcache           = 8000
+  }
+}
+
 resource "constellix_domain" "servicecontrol_io" {
   name = "servicecontrol.io"
   soa = {
@@ -38,6 +50,21 @@ resource "constellix_domain" "servicecontrol_io" {
     retry              = 7200
     expire             = 1209
     negcache           = 8000
+  }
+}
+
+resource "constellix_txt_record" "txtrecord12" {
+  domain_id      = constellix_domain.nasonlinux_org.id
+  ttl            = 300
+  name           = "_acme-challenge"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "5x-exm5KfFebO8Bi3ZsZY8ffnjhmMaVvDXb03_tTeEs"
+    disable_flag = false
   }
 }
 
