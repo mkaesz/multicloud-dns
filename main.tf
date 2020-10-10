@@ -54,7 +54,7 @@ resource "constellix_domain" "servicecontrol_io" {
 }
 
 resource "constellix_domain" "dealhalle_de" {
-  name = "dealhalle_de"
+  name = "dealhalle.de"
   soa = {
     primary_nameserver = "ns41.constellix.com."
     ttl                = 1800
@@ -81,7 +81,7 @@ resource "constellix_txt_record" "txtrecord14" {
 }
 
 resource "constellix_domain" "topdealbox_de" {
-  name = "topdealbox_de"
+  name = "topdealbox.de"
   soa = {
     primary_nameserver = "ns41.constellix.com."
     ttl                = 1800
