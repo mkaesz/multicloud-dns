@@ -1,3 +1,13 @@
+terraform {
+  backend "remote" {
+    organization = "my-infra"
+
+    workspaces {
+      name = "multicloud-dns"
+    }
+  }
+}
+
 variable "constellix_api_key" {
 }
 
