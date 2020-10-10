@@ -53,6 +53,33 @@ resource "constellix_domain" "servicecontrol_io" {
   }
 }
 
+resource "constellix_domain" "dealhalle_de" {
+  name = "dealhalle_de"
+  soa = {
+    primary_nameserver = "ns41.constellix.com."
+    ttl                = 1800
+    refresh            = 48100
+    retry              = 7200
+    expire             = 1209
+    negcache           = 8000
+  }
+}
+
+resource "constellix_txt_record" "txtrecord14" {
+  domain_id      = constellix_domain.dealhalle_de.id
+  ttl            = 300
+  name           = "_acme-challenge"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "5x"
+    disable_flag = false
+  }
+}
+
 resource "constellix_domain" "topdealbox_de" {
   name = "topdealbox_de"
   soa = {
@@ -326,19 +353,6 @@ resource "constellix_mx_record" "mx2" {
     level        = "20"
     disable_flag = "false"
   }
-}
-
-resource "constellix_cname_record" "test" {
-  domain_id     = constellix_domain.msk_pub.id
-  source_type   = "domains"
-  record_option = "roundRobin"
-  ttl           = 300
-  name          = "testt"
-  host          = "spiegel.de."
-  type        = "CNAME"
-  gtd_region  = 1
-  note        = ""
-  noanswer    = false
 }
 
 resource "constellix_cname_record" "mailgun" {
