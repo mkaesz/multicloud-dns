@@ -73,8 +73,8 @@ resource "constellix_cname_record" "blog" {
   source_type    = "domains"
   record_option  = "roundRobin"
   ttl            = 300
-  name           = "blop"
-  host           = "serviceontrol.github.io"
+  name           = "blog"
+  host           = "servicecontrol.github.io."
   type           = "CNAME"
   gtd_region     = 1
   note           = ""
