@@ -30,7 +30,7 @@ resource "constellix_domain" "msk_pub" {
 }
 
 resource "constellix_domain" "nasonlinux_org" {
-  name = "msk.pub"
+  name = "nasonlinux.org"
   soa = {
     primary_nameserver = "ns41.constellix.com."
     ttl                = 1800
