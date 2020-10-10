@@ -29,11 +29,63 @@ resource "constellix_domain" "msk_pub" {
   }
 }
 
+resource "constellix_domain" "servicecontrol_io" {
+  name = "serviceontrol.io"
+  soa = {
+    primary_nameserver = "ns41.constellix.com."
+    ttl                = 1800
+    refresh            = 48100
+    retry              = 7200
+    expire             = 1209
+    negcache           = 8000
+  }
+}
+
+resource "constellix_domain" "upcloud_msk_pub" {
+  name = "upcloud.msk.pub"
+  soa = {
+    primary_nameserver = "ns41.constellix.com."
+    ttl                = 1800
+    refresh            = 48100
+    retry              = 7200
+    expire             = 1209
+    negcache           = 8000
+  }
+}
+
+resource "constellix_txt_record" "txtrecord10" {
+  domain_id      = constellix_domain.upcloud_msk_pub.id
+  ttl            = 300
+  name           = "_acme-challenge"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "bTrn6KPiThLRPVI266AWs4C086fsKMD5qonr7KxY9ks"
+    disable_flag = false
+  }
+}
+
+resource "constellix_cname_record" "blog" {
+  domain_id      = constellix_domain.servicecontrol_io.id
+  source_type    = "domains"
+  record_option  = "roundRobin"
+  ttl            = 300
+  name           = "blop"
+  host           = "serviceontrol.github.io"
+  type           = "CNAME"
+  gtd_region     = 1
+  note           = ""
+  noanswer       = false
+}
+
 resource "constellix_ns_record" "gcp" {
-  domain_id   = constellix_domain.msk_pub.id
-  source_type = "domains"
-  ttl         = 100
-  name        = "gcp"
+  domain_id      = constellix_domain.msk_pub.id
+  source_type    = "domains"
+  ttl            = 100
+  name           = "gcp"
   roundrobin {
     value        = google_dns_managed_zone.msk-pub-zone.name_servers[0] 
     disable_flag = "false"
@@ -50,10 +102,10 @@ resource "constellix_ns_record" "gcp" {
     value        = google_dns_managed_zone.msk-pub-zone.name_servers[3] 
     disable_flag = "false"
   }
-  type       = "NS"
-  gtd_region = 1
-  note       = "Delegeta to GCP"
-  noanswer   = false
+  type           = "NS"
+  gtd_region     = 1
+  note           = "Delegeta to GCP"
+  noanswer       = false
 }
 
 resource "google_dns_managed_zone" "msk-pub-zone" {
