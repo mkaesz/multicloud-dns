@@ -30,7 +30,7 @@ resource "constellix_domain" "msk_pub" {
 }
 
 resource "constellix_domain" "servicecontrol_io" {
-  name = "serviceontrol.io"
+  name = "servicecontrol.io"
   soa = {
     primary_nameserver = "ns41.constellix.com."
     ttl                = 1800
