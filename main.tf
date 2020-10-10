@@ -53,6 +53,33 @@ resource "constellix_domain" "servicecontrol_io" {
   }
 }
 
+resource "constellix_domain" "topdealbox_de" {
+  name = "topdealbox_de"
+  soa = {
+    primary_nameserver = "ns41.constellix.com."
+    ttl                = 1800
+    refresh            = 48100
+    retry              = 7200
+    expire             = 1209
+    negcache           = 8000
+  }
+}
+
+resource "constellix_txt_record" "txtrecord13" {
+  domain_id      = constellix_domain.topdealbox_de.id
+  ttl            = 300
+  name           = "_acme-challenge"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "5x"
+    disable_flag = false
+  }
+}
+
 resource "constellix_txt_record" "txtrecord12" {
   domain_id      = constellix_domain.nasonlinux_org.id
   ttl            = 300
