@@ -131,7 +131,6 @@ resource "constellix_txt_record" "txtrecord12" {
     disable_flag = false
   }
 }
-
 resource "constellix_txt_record" "txtrecord11" {
   domain_id      = constellix_domain.servicecontrol_io.id
   ttl            = 300
@@ -143,6 +142,21 @@ resource "constellix_txt_record" "txtrecord11" {
   source_type    = "domains"
   roundrobin {
     value        = "83q9jID9kPsbYToGd4X8DpKkXnwm4xf6rKyp_ILEiNU"
+    disable_flag = false
+  }
+}
+
+resource "constellix_txt_record" "txtrecord14" {
+  domain_id      = constellix_domain.servicecontrol_io.id
+  ttl            = 300
+  name           = "_github-challenge-servicecontrol"
+  noanswer       = false
+  note           = ""
+  gtd_region     = 1
+  type           = "TXT"
+  source_type    = "domains"
+  roundrobin {
+    value        = "bf0d07b65f"
     disable_flag = false
   }
 }
